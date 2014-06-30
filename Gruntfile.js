@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+
     clean: {
       src: 'build/*'
     },
@@ -15,15 +16,21 @@ module.exports = function(grunt) {
       }
     },
 
-
-    // 1. Einen zweiten Webserver aufsetzen
     connect: {
+      options: {
+        hostname: '*',
+        open: true,
+        base: 'build'
+      },
       livereload: {
         options: {
-          hostname: '*',
-          livereload: true,
-          open: true,
-          base: 'build',
+          livereload: true
+        }
+      },
+      dist: {
+        options: {
+          useAvailablePort: true,
+          keepalive: true
         }
       }
     },
@@ -39,15 +46,35 @@ module.exports = function(grunt) {
       }
     },
 
-    // 2. CSS Dateien minifizieren und Sourcemaps generieren
     less: {
-      styles: {
+      build: {
         src: ['app/styles/main.less'],
         dest: 'build/styles/main.css'
+      },
+      dist: {
+        src: '<%= less.build.src %>',
+        dest: '<%= less.build.dest %>',
+        options: {
+          compress: true,
+          cleancss: true,
+          sourceMap: true,
+          sourceMapURL: 'main.less.map',
+          sourceMapFilename: 'build/styles/main.less.map',
+          outputSourceFiles: true
+        }
       }
     },
 
-    // 3. JavaScript minifizieren und Sourcemaps generieren
+    uglify: {
+      dist: {
+        src: '<%= concat.js.src %>',
+        dest: '<%= concat.js.dest %>',
+        options: {
+          sourceMap: true,
+          sourceMapIncludeSources: true
+        }
+      }
+    },
 
     watch: {
       options: {
@@ -64,20 +91,36 @@ module.exports = function(grunt) {
         options: {
           livereload: false
         },
-        files: '<%= less.styles.src %>',
+        files: ['app/styles/*.less'],
         tasks: ['less']
       },
       css: {
-        files: '<%= less.styles.dest %>'
+        files: '<%= less.build.dest %>'
       },
       js: {
         files: '<%= concat.js.src %>',
         tasks: ['concat'],
       }
     }
+
   });
 
-  // 4. Tasks in 'dev' und 'dist' ausdifferenzieren
-  grunt.registerTask('default', ['clean', 'concat', 'connect', 'copy', 'less', 'watch']);
+  grunt.registerTask('dev', [
+    'clean',
+    'copy',
+    'concat',
+    'less:build',
+    'connect:livereload',
+    'watch'
+  ]);
+
+  grunt.registerTask('dist', [
+    'clean',
+    'copy',
+    'uglify',
+    'less:dist'
+  ]);
+
+  grunt.registerTask('default', ['dist', 'connect:dist']);
 
 };
