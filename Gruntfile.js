@@ -15,6 +15,8 @@ module.exports = function(grunt) {
       }
     },
 
+
+    // 1. Einen zweiten Webserver aufsetzen
     connect: {
       livereload: {
         options: {
@@ -37,12 +39,15 @@ module.exports = function(grunt) {
       }
     },
 
+    // 2. CSS Dateien minifizieren und Sourcemaps generieren
     less: {
       styles: {
         src: ['app/styles/main.less'],
         dest: 'build/styles/main.css'
       }
     },
+
+    // 3. JavaScript minifizieren und Sourcemaps generieren
 
     watch: {
       options: {
@@ -72,6 +77,7 @@ module.exports = function(grunt) {
     }
   });
 
+  // 4. Tasks in 'dev' und 'dist' ausdifferenzieren
   grunt.registerTask('default', ['clean', 'concat', 'connect', 'copy', 'less', 'watch']);
 
 };

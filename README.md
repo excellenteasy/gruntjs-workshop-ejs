@@ -38,7 +38,7 @@ grunt hello
 > Done, without errors.
 ```
 
-## 2. Schritt - Einen Development Web Server mit Livereload
+## 2. Schritt – Einen Development Web Server mit Livereload
 
 Wir installieren und laden notwendige tasks…
 
@@ -48,7 +48,7 @@ npm install grunt-contrib-watch grunt-contrib-connect --save-dev
 
 … und konfigurieren sie so, dass unser HTML über HTTP ausgeliefert und bei Veränderungen sofort neugeladen wird.
 
-## 3. Schritt - LESS zu CSS kompilieren
+## 3. Schritt – LESS zu CSS kompilieren
 
 ```bash
 npm install grunt-contrib-less --save-dev
@@ -63,6 +63,7 @@ npm install grunt-contrib-concat --save-dev
 Die zwei JavaScript Dateien im Order `app/scripts/` sollen zu einer `main.js` im selben Ordner konkatiniert werden.
 
 ## 5. Schritt – Aufräumen
+
 Das Gruntfile wird größer und unübersichtlicher. Im `scripts` und `styles` Ordner tummeln sich teils Quell- teil kompiliere Dateien. Unsere Task Konfiguration wird umständlich weil wir die kompilierten Datein aussparen müssen. Es wird Zeit aufzuräumen.
 
 Gruntfile verkürzen und nie wieder Tasks laden:
@@ -71,3 +72,13 @@ npm install load-grunt-tasks grunt-contrib-copy grunt-contrib-clean --save-dev
 ```
 
 Im Gruntfile alle `grunt.loadNpmTasks` ersetzen durch ein einziges `require('load-grunt-tasks')(grunt)`. Die Pfad-Redundanzen können mittels templating aufgelöst werden. Die Quelldateien werden von den kompilierten Dateien getrennt. Der entstandene `build` Ordner muss vor jedem Durchlauf gereinigt, und für git ignoriert werden. Die `index.html` Datei muss in den build Ordner kopiert werden.
+
+## 6. Schritt – Zwischen Entwicklung und Deployment differenzieren
+
+Während der Entwicklung möchten wir schnell neue Versionen unseres Codes ausprobieren, doch für das Deployment optimieren wir lieber die Ladezeit und minifizieren die Dateien.
+
+```bash
+npm install grunt-contrib-uglify --save-dev
+```
+
+Wir legen verschiedene Tasks für das Entwickeln und den Produktionseinsatz an.
