@@ -1,15 +1,31 @@
 module.exports = function(grunt) {
   'use strict';
 
-  // 1. NPM Tasks laden
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
-    // 2. Connect Webserver konfigurieren
-    connect: {},
+    connect: {
+      livereload: {
+        options: {
+          hostname: '*',
+          livereload: true,
+          open: true,
+          base: 'app',
+        }
+      }
+    },
 
-    // 3. Dateien überwachen und Browser neu laden lassen
-    watch: {}
-
+    watch: {
+      options: {
+        livereload: true
+      },
+      html: {
+        files: ['app/*.html']
+      }
+    }
   });
+
+  grunt.registerTask('default', ['connect', 'watch']);
 
 };
