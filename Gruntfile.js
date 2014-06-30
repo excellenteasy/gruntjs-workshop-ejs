@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  // 1. LESS Task laden
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   grunt.initConfig({
     connect: {
@@ -17,7 +17,12 @@ module.exports = function(grunt) {
       }
     },
 
-    // 2. LESS konfigurieren
+    less: {
+      styles: {
+        src: ['app/styles/main.less'],
+        dest: 'app/styles/main.css'
+      }
+    },
 
     watch: {
       options: {
@@ -25,14 +30,20 @@ module.exports = function(grunt) {
       },
       html: {
         files: ['app/*.html']
+      },
+      less: {
+        options: {
+          livereload: false
+        },
+        files: ['app/styles/*.less'],
+        tasks: ['less']
+      },
+      css: {
+        files: ['app/styles/main.css']
       }
-      // 3. LESS Dateien überwachen und neu kompilieren
-      //    (Browser noch nicht neu laden lassen)
-
-      // 4. Kompilierte CSS Datei überwachen und live neuladen
     }
   });
-  // 5. LESS Task registieren
-  grunt.registerTask('default', ['connect', 'watch']);
+
+  grunt.registerTask('default', ['connect', 'less', 'watch']);
 
 };
