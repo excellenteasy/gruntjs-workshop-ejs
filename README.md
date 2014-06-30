@@ -47,3 +47,9 @@ npm install grunt-contrib-watch grunt-contrib-connect --save-dev
 ```
 
 … und konfigurieren sie so, dass unser HTML über HTTP ausgeliefert und bei Veränderungen sofort neugeladen wird.
+
+## 3. Schritt - LESS zu CSS kompilieren
+
+```bash
+npm install grunt-contrib-less --save-dev
+```
