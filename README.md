@@ -61,3 +61,13 @@ npm install grunt-contrib-concat --save-dev
 ```
 
 Die zwei JavaScript Dateien im Order `app/scripts/` sollen zu einer `main.js` im selben Ordner konkatiniert werden.
+
+## 5. Schritt – Aufräumen
+Das Gruntfile wird größer und unübersichtlicher. Im `scripts` und `styles` Ordner tummeln sich teils Quell- teil kompiliere Dateien. Unsere Task Konfiguration wird umständlich weil wir die kompilierten Datein aussparen müssen. Es wird Zeit aufzuräumen.
+
+Gruntfile verkürzen und nie wieder Tasks laden:
+```bash
+npm install load-grunt-tasks grunt-contrib-copy grunt-contrib-clean --save-dev
+```
+
+Im Gruntfile alle `grunt.loadNpmTasks` ersetzen durch ein einziges `require('load-grunt-tasks')(grunt)`. Die Pfad-Redundanzen können mittels templating aufgelöst werden. Die Quelldateien werden von den kompilierten Dateien getrennt. Der entstandene `build` Ordner muss vor jedem Durchlauf gereinigt, und für git ignoriert werden. Die `index.html` Datei muss in den build Ordner kopiert werden.
