@@ -53,3 +53,11 @@ npm install grunt-contrib-watch grunt-contrib-connect --save-dev
 ```bash
 npm install grunt-contrib-less --save-dev
 ```
+
+## 4. Schritt - JavaScript Dateien konkatenieren
+
+```bash
+npm install grunt-contrib-concat --save-dev
+```
+
+Die zwei JavaScript Dateien im Order `app/scripts/` sollen zu einer `main.js` im selben Ordner konkatiniert werden.
