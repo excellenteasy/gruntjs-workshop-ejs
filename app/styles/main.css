@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  background: #f2f2f2;
+}
+body > h1 {
+  margin: 20px 0;
+  padding: 2px 0;
+  display: inline-block;
+  background: purple;
+  color: white;
+  font-family: sans-serif;
+}
+body > h1 a {
+  color: white;
+}

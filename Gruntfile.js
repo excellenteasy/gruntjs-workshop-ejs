@@ -1,13 +1,18 @@
 module.exports = function(grunt) {
   'use strict';
 
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-  // 1. concat Task laden
 
   grunt.initConfig({
-    // 2. concat Task konfigurieren
+    concat: {
+      js: {
+        src: ['app/scripts/color.js', 'app/scripts/logger.js'],
+        dest: 'app/scripts/main.js'
+      }
+    },
 
     connect: {
       livereload: {
@@ -44,11 +49,13 @@ module.exports = function(grunt) {
       css: {
         files: ['app/styles/main.css']
       },
-      // 3. JavaScript Dateien überwachen
+      js: {
+        files: ['app/scripts/color.js', 'app/scripts/logger.js'],
+        tasks: ['concat'],
+      }
     }
   });
 
-  // 4. concat Task hinzufügen
-  grunt.registerTask('default', ['connect', 'less', 'watch']);
+  grunt.registerTask('default', ['concat', 'connect', 'less', 'watch']);
 
 };
