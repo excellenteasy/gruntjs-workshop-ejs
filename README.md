@@ -37,3 +37,13 @@ grunt hello
 > Alles funktioniert wie es soll.
 > Done, without errors.
 ```
+
+## 2. Schritt - Einen Development Web Server mit Livereload
+
+Wir installieren und laden notwendige tasks…
+
+```bash
+npm install grunt-contrib-watch grunt-contrib-connect --save-dev
+```
+
+… und konfigurieren sie so, dass unser HTML über HTTP ausgeliefert und bei Veränderungen sofort neugeladen wird.

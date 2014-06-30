@@ -1,9 +1,15 @@
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.registerTask('hello', function() {
-    grunt.log
-      .ok()
-      .write('Alles funktioniert wie es soll.');
+  // 1. NPM Tasks laden
+
+  grunt.initConfig({
+    // 2. Connect Webserver konfigurieren
+    connect: {},
+
+    // 3. Dateien überwachen und Browser neu laden lassen
+    watch: {}
+
   });
+
 };

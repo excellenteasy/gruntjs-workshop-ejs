@@ -1,9 +1,11 @@
 {
   "name": "gruntjs-workshop-ejs",
   "version": "0.0.0",
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git://github.com/excellenteasy/gruntjs-workshop-ejs.git"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }
