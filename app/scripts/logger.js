@@ -1,1 +1,1 @@
-console.log('Hello enter.js!')
+console.log('Hello enter.js!');
