@@ -4,8 +4,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
+  // 1. concat Task laden
 
   grunt.initConfig({
+    // 2. concat Task konfigurieren
+
     connect: {
       livereload: {
         options: {
@@ -40,10 +43,12 @@ module.exports = function(grunt) {
       },
       css: {
         files: ['app/styles/main.css']
-      }
+      },
+      // 3. JavaScript Dateien überwachen
     }
   });
 
+  // 4. concat Task hinzufügen
   grunt.registerTask('default', ['connect', 'less', 'watch']);
 
 };
