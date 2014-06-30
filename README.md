@@ -17,3 +17,23 @@ npm -v
 grunt --version
 > grunt-cli v0.1.13
 ```
+
+## 1. Schritt - Gerüst und Abhängigkeiten
+
+Die Files `package.json` und `Gruntfile.js` sind das Grundgerüst für unseren grunt Prozess.
+
+Wir installieren nun das `grunt` Packet.
+
+```bash
+npm install --save-dev grunt
+```
+
+Hat alles geklappt verifizieren wir das mit unserem ersten grunt Befehl.
+
+```bash
+grunt hello
+> Running "hello" task
+> OK
+> Alles funktioniert wie es soll.
+> Done, without errors.
+```
