@@ -1,16 +1,17 @@
 module.exports = function(grunt) {
   'use strict';
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-less');
+  require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+    clean: {
+      src: 'build/*'
+    },
+
     concat: {
       js: {
-        src: ['app/scripts/color.js', 'app/scripts/logger.js'],
-        dest: 'app/scripts/main.js'
+        src: ['app/scripts/*.js'],
+        dest: 'build/scripts/main.js'
       }
     },
 
@@ -20,15 +21,26 @@ module.exports = function(grunt) {
           hostname: '*',
           livereload: true,
           open: true,
-          base: 'app',
+          base: 'build',
         }
+      }
+    },
+
+    copy: {
+      html: {
+        files: [{
+          expand: true,
+          cwd: 'app/',
+          src: ['*.html'],
+          dest: 'build/'
+        }],
       }
     },
 
     less: {
       styles: {
         src: ['app/styles/main.less'],
-        dest: 'app/styles/main.css'
+        dest: 'build/styles/main.css'
       }
     },
 
@@ -36,26 +48,30 @@ module.exports = function(grunt) {
       options: {
         livereload: true
       },
+      gruntfile: {
+        files: ['Gruntfile.js']
+      },
       html: {
-        files: ['app/*.html']
+        files: ['app/*.html'],
+        tasks: ['copy']
       },
       less: {
         options: {
           livereload: false
         },
-        files: ['app/styles/*.less'],
+        files: '<%= less.styles.src %>',
         tasks: ['less']
       },
       css: {
-        files: ['app/styles/main.css']
+        files: '<%= less.styles.dest %>'
       },
       js: {
-        files: ['app/scripts/color.js', 'app/scripts/logger.js'],
+        files: '<%= concat.js.src %>',
         tasks: ['concat'],
       }
     }
   });
 
-  grunt.registerTask('default', ['concat', 'connect', 'less', 'watch']);
+  grunt.registerTask('default', ['clean', 'concat', 'connect', 'copy', 'less', 'watch']);
 
 };
