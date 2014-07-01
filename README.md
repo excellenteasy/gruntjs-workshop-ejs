@@ -82,3 +82,11 @@ npm install grunt-contrib-uglify --save-dev
 ```
 
 Wir legen verschiedene Tasks für das Entwickeln und den Produktionseinsatz an.
+
+## 7. Schritt – Code Qualität automatisiert prüfen
+
+Beim Speichern schon die Benachrichtigung bekommen, ob der geschrieben Code auch JSHint kompatibel ist? Kein Problem.
+
+```bash
+npm install grunt-contrib-jshint --save-dev
+```

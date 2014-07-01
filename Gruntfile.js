@@ -46,6 +46,8 @@ module.exports = function(grunt) {
       }
     },
 
+    // 1. JSHINT Task konfigurieren
+
     less: {
       build: {
         src: ['app/styles/main.less'],
