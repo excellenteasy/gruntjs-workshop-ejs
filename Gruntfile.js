@@ -146,6 +146,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['dist', 'connect:dist']);
 
-  // register a task that logs the version of package.json
+  grunt.registerTask('version', 'prints npm version', function() {
+    var pkg = grunt.file.readJSON('package.json');
+    grunt.log.writeln('version: ' + pkg.version);
+  });
 
 };
