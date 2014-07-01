@@ -46,7 +46,12 @@ module.exports = function(grunt) {
       }
     },
 
-    // 1. JSHINT Task konfigurieren
+    jshint: {
+      files: '<%= concat.js.src %>',
+      options: {
+        jshintrc: true
+      }
+    },
 
     less: {
       build: {
