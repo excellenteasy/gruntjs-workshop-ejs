@@ -5,6 +5,8 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    // 1. bump Task konfigurieren
+
     clean: {
       src: 'build/*'
     },
@@ -45,6 +47,8 @@ module.exports = function(grunt) {
         }],
       }
     },
+
+    // 2. git-hooks Task konfigurieren
 
     jshint: {
       files: '<%= concat.js.src %>',

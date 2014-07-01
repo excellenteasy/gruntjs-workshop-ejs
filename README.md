@@ -90,3 +90,11 @@ Beim Speichern schon die Benachrichtigung bekommen, ob der geschrieben Code auch
 ```bash
 npm install grunt-contrib-jshint --save-dev
 ```
+
+## 8. Schritt – Releases automatisieren
+
+Beim Erstellen von Releases kann viel falsch laufen. Mit `grunt-githooks` und `grunt-bump` können wir Fehler vermeiden.
+
+```bash
+npm install grunt-bump grunt-githooks --save-dev
+```

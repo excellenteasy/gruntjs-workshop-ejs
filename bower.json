@@ -1,0 +1,17 @@
+{
+  "name": "gruntjs-workshop-ejs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/excellenteasy/gruntjs-workshop-ejs",
+  "authors": [
+    "David Pfahler <david@excellenteasy.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
