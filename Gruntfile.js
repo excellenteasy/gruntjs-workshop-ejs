@@ -5,7 +5,14 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    // 1. bump Task konfigurieren
+    bump: {
+      options: {
+        commitMessage: 'chore(release): v%VERSION%',
+        files: ['package.json', 'bower.json'],
+        commitFiles: ['package.json', 'bower.json'],
+        pushTo: 'origin master'
+      }
+    },
 
     clean: {
       src: 'build/*'
@@ -48,7 +55,11 @@ module.exports = function(grunt) {
       }
     },
 
-    // 2. git-hooks Task konfigurieren
+    githooks: {
+      all: {
+        'pre-commit': 'jshint'
+      }
+    },
 
     jshint: {
       files: '<%= concat.js.src %>',
@@ -118,6 +129,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', [
     'clean',
+    'githooks',
     'copy',
     'concat',
     'less:build',
