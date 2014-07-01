@@ -98,3 +98,7 @@ Beim Erstellen von Releases kann viel falsch laufen. Mit `grunt-githooks` und `g
 ```bash
 npm install grunt-bump grunt-githooks --save-dev
 ```
+
+## 9. Schritt – Eigene Tasks schreiben
+
+Selbst zum Task Autor zu werden ist gar nicht schwer und eröffnet viele neue Möglichkeiten. Wir benutzen die `grunt.registerTask` API, um einen Task anzulegen, der die Version aus dem `package.json` liest und ins Terminal schreibt.
